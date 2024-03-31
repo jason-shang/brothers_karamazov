@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import { VoyageEmbeddings } from "langchain/embeddings/voyage";
-import { VercelPostgres } from "@langchain/community/vectorstores/vercel_postgres";
+// import { VercelPostgres } from "@langchain/community/vectorstores/vercel_postgres";
 import { getVoyageAIKey } from "@/lib/utils";
 import {
   Document,
