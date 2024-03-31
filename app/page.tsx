@@ -1,5 +1,5 @@
-import React from 'react';
-import CharacterButton from '../components/characterButton';
+import React from "react";
+import CharacterButton from "../components/characterButton";
 
 export default function Home() {
   return (
