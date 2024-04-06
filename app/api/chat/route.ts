@@ -1,17 +1,26 @@
-import anthropic from "@/lib/anthropic";
-
 import { AnthropicStream, StreamingTextResponse } from "ai";
+import anthropic from "@/lib/anthropic";
+import { structureSystemPrompt } from "./prompts";
 
 export const runtime = "edge";
 
+export interface Message {
+  role: string;
+  content: string;
+}
+
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
+    const data = await req.json();
+    const messages = data.messages as Message[];
+    const systemPrompt = await structureSystemPrompt(messages);
+
     const response = await anthropic.messages.create({
-      messages,
+      messages: data.messages,
       model: "claude-3-haiku-20240307",
       stream: true,
-      max_tokens: 300,
+      max_tokens: 400,
+      system: systemPrompt
     });
 
     const stream = AnthropicStream(response);

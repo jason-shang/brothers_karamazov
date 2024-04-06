@@ -10,8 +10,18 @@ export function getVoyageAIKey() {
   const apiKey = isProductionEnv
     ? process.env.PROD_VOYAGEAI_KEY
     : process.env.DEV_VOYAGEAI_KEY;
-  if (!apiKey) {
-    throw Error("Voyage AI key is not set");
-  }
+  if (!apiKey) throw Error("Voyage AI key is not set");
   return apiKey;
+}
+
+export function getSupabaseURL() {
+  const url = process.env.SUPABASE_URL;
+  if (!url) throw new Error(`Expected env var SUPABASE_URL`);
+  return url;
+}
+
+export function getSupabaseKey() {
+  const serviceKey = process.env.SUPABASE_SERVICE_KEY;
+  if (!serviceKey) throw new Error(`Expected env var SUPABASE_PRIVATE_KEY`);
+  return serviceKey;
 }
