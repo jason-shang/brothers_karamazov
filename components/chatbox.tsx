@@ -3,14 +3,19 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { XCircle } from "lucide-react";
+import { XCircle, Trash } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { CharacterPromptData } from "@/app/api/chat/prompts";
+import characterPrompts from "@/public/characterPrompts.json";
 
 interface ChatBoxProps {
   open: boolean;
   onClose: () => void;
+  time: string, 
+  character: string
 }
 
-export default function ChatBox({ open, onClose }: ChatBoxProps) {
+export default function ChatBox({ open, onClose, time, character }: ChatBoxProps) {
   const {
     messages,
     input,
@@ -20,6 +25,28 @@ export default function ChatBox({ open, onClose }: ChatBoxProps) {
     isLoading,
     error,
   } = useChat(); // default routes to /api/chat
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const prompts: CharacterPromptData = characterPrompts;
+
+  // scroll to bottom when receiving new messages (works with streaming)
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  // highlight input field upon opening the chat box
+  useEffect(() => {
+    if (open) {
+      inputRef.current?.focus();
+    }
+  }, [open]);
+
+  // boolean will only be true if the AI has not started streaming responses; used to show AI loading state (before streaming starts)
+  const lastMessageIsUser = messages[messages.length - 1]?.role === "user";
 
   return (
     <div
@@ -47,16 +74,54 @@ export default function ChatBox({ open, onClose }: ChatBoxProps) {
             <XCircle size={24} />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="h-full mt-3 px-3 overflow-y-auto" ref={scrollRef}>
           {messages.map((message) => (
             <ChatMessage message={message} key={message.id} />
           ))}
+          {isLoading && lastMessageIsUser && (
+            <ChatMessage
+              message={{
+                role: "assistant",
+                content: "Loading...",
+              }}
+            />
+          )}
+          {error && (
+            <ChatMessage
+              message={{
+                role: "assistant",
+                content:
+                  "Uh oh, something went wrong on our side. Please try again.",
+              }}
+            />
+          )}
+          {!error && messages.length === 0 && (
+            <ConversationStarter
+              message={{
+                role: "assistant",
+                content: prompts[time][character]["user"]
+              }}
+            />
+          )}
         </div>
         <form onSubmit={handleSubmit} className="m-3 flex gap-1">
+          <Button
+            title="Clear chat"
+            variant="outline"
+            size="icon"
+            className="shrink-0"
+            type="button"
+            onClick={() => {
+              setMessages([]);
+            }}
+          >
+            <Trash />
+          </Button>
           <Input
             value={input}
             onChange={handleInputChange}
             placeholder="Ask anything!"
+            ref={inputRef}
           />
           <Button type="submit">Submit</Button>
         </form>
@@ -65,11 +130,50 @@ export default function ChatBox({ open, onClose }: ChatBoxProps) {
   );
 }
 
-function ChatMessage({ message: { role, content } }: { message: Message }) {
+function ChatMessage({
+  message: { role, content },
+}: {
+  message: Pick<Message, "role" | "content">;
+}) {
+  const isAiMessage = role === "assistant";
+
   return (
-    <div className="mb-3">
-      <div>{role}</div>
-      <div>{content}</div>
+    <div
+      className={cn(
+        "mb-3 flex items-center",
+        isAiMessage ? "me-5 justify-start" : "ms-5 justify-end"
+      )}
+    >
+      <p
+        className={cn(
+          "whitespace-pre-line rounded-md border px-3 py-2",
+          isAiMessage ? "bg-background" : "bg-primary text-primary-foreground"
+        )}
+      >
+        {content}
+      </p>
     </div>
   );
+}
+
+function ConversationStarter({
+  message: { role, content },
+}: {
+  message: Pick<Message, "role" | "content">;
+}) {
+  return (
+    <div
+      className={cn(
+        "mb-3 flex items-center", "justify-center items-center min-h-screen"
+      )}
+    >
+      <p
+        className={cn(
+          "whitespace-pre-line rounded-md border px-3 py-2", "bg-primary text-primary-foreground"
+        )}
+      >
+        {content}
+      </p>
+    </div>
+  )
 }

@@ -10,7 +10,7 @@ export default function CharacterButton() {
   return (
     <>
       <Button onClick={() => setChatBoxOpen(true)}>Alyosha Karamazov</Button>
-      <ChatBox open={chatBoxOpen} onClose={() => setChatBoxOpen(false)} />
+      <ChatBox open={chatBoxOpen} onClose={() => setChatBoxOpen(false)} time={"time1"} character={"Alyosha"} />
     </>
   );
 }

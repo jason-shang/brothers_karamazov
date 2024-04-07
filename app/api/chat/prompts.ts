@@ -5,8 +5,18 @@ import {
 } from "@langchain/community/vectorstores/supabase";
 import { VoyageEmbeddings } from "@langchain/community/embeddings/voyage";
 import { getSupabaseURL, getSupabaseKey, getVoyageAIKey } from "@/lib/utils";
-import promptsJson from "@/public/prompts.json";
+import characterPrompts from "@/public/characterPrompts.json";
+import generalPrompts from "@/public/generalPrompts.json";
 import { Message } from "@/app/api/chat/route";
+
+export interface CharacterPromptData {
+  [time: string]: {
+    [character: string]: {
+      system: string;
+      user: string;
+    };
+  };
+}
 
 // Perform similarity search in Supabase vector store and retrieve top 5 summary chunks & top 3 original text chunks
 export const retrieveContextDocuments = async (prompt: string) => {
@@ -81,7 +91,7 @@ const formatMessages = async (messages: Message[]) => {
 // structure long document prompt for long context windows as suggested by https://docs.anthropic.com/claude/docs/long-context-window-tips#structuring-long-documents
 export const structureSystemPrompt = async (messages: Message[]) => {
   const messagesTruncated = messages.slice(-6);
-  const prompt = promptsJson["time1"]["Alyosha"];
+  const prompt = characterPrompts["time1"]["Alyosha"]["system"];
   const xmlMessages = await formatMessages(messages);
 
   // retrieve context documents based on prompt and previous messages
@@ -103,6 +113,6 @@ export const structureSystemPrompt = async (messages: Message[]) => {
     promptAndMessages +
     "Here are some documents for you to reference for your task:\n" +
     documentString +
-    promptsJson["requirements"];
+    generalPrompts["user"];
   return finalPrompt;
 };
