@@ -13,14 +13,18 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
     const messages = data.messages as Message[];
-    const systemPrompt = await structureSystemPrompt(messages);
+
+    const time = data.time as string;
+    const character = data.character as string;
+
+    const systemPrompt = await structureSystemPrompt(messages, time, character);
 
     const response = await anthropic.messages.create({
       messages: data.messages,
       model: "claude-3-haiku-20240307",
       stream: true,
       max_tokens: 400,
-      system: systemPrompt
+      system: systemPrompt,
     });
 
     const stream = AnthropicStream(response);
