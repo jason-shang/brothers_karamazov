@@ -51,7 +51,7 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
             Day One
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ py: 1 }}>
-            Fyodor's past, Grand Inquisitor, Katerina's sacrifice, Father
+            Fyodor&apos;s past, Grand Inquisitor, Katerina&apos;s sacrifice, Father
             Zossima
           </Typography>
         </TimelineContent>
@@ -122,7 +122,7 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
             Day Three
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ py: 1 }}>
-            Dmitry's trial, Ivan & his devil, Smerdyakov's suicide
+            Dmitry&apos;s trial, Ivan & his devil, Smerdyakov&apos;s suicide
           </Typography>
         </TimelineContent>
       </TimelineItem>
