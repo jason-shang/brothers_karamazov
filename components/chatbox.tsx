@@ -1,7 +1,6 @@
 import { useChat, Message } from "ai/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { XCircle, Trash } from "lucide-react";
 import { useEffect, useRef } from "react";
@@ -11,11 +10,16 @@ import characterPrompts from "@/public/characterPrompts.json";
 interface ChatBoxProps {
   open: boolean;
   onClose: () => void;
-  time: string, 
-  character: string
+  time: string;
+  character: string;
 }
 
-export default function ChatBox({ open, onClose, time, character }: ChatBoxProps) {
+export default function ChatBox({
+  open,
+  onClose,
+  time,
+  character,
+}: ChatBoxProps) {
   const {
     messages,
     input,
@@ -24,7 +28,12 @@ export default function ChatBox({ open, onClose, time, character }: ChatBoxProps
     setMessages,
     isLoading,
     error,
-  } = useChat(); // default routes to /api/chat
+  } = useChat({
+    body: {
+      time: time,
+      character: character,
+    },
+  }); // default routes to /api/chat
 
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -98,8 +107,7 @@ export default function ChatBox({ open, onClose, time, character }: ChatBoxProps
           {!error && messages.length === 0 && (
             <ConversationStarter
               message={{
-                role: "assistant",
-                content: prompts[time][character]["user"]
+                content: prompts[time][character]["user"],
               }}
             />
           )}
@@ -157,23 +165,25 @@ function ChatMessage({
 }
 
 function ConversationStarter({
-  message: { role, content },
+  message: { content },
 }: {
-  message: Pick<Message, "role" | "content">;
+  message: Pick<Message, "content">;
 }) {
   return (
     <div
       className={cn(
-        "mb-3 flex items-center", "justify-center items-center min-h-screen"
+        "mb-3 flex items-center",
+        "justify-center items-center min-h-screen"
       )}
     >
       <p
         className={cn(
-          "whitespace-pre-line rounded-md border px-3 py-2", "bg-primary text-primary-foreground"
+          "whitespace-pre-line rounded-md border px-3 py-2",
+          "bg-primary text-primary-foreground"
         )}
       >
         {content}
       </p>
     </div>
-  )
+  );
 }

@@ -89,10 +89,16 @@ const formatMessages = async (messages: Message[]) => {
 };
 
 // structure long document prompt for long context windows as suggested by https://docs.anthropic.com/claude/docs/long-context-window-tips#structuring-long-documents
-export const structureSystemPrompt = async (messages: Message[]) => {
+export const structureSystemPrompt = async (
+  messages: Message[],
+  time: string,
+  character: string
+) => {
+  const prompts = characterPrompts as CharacterPromptData;
+  const prompt = prompts[time][character]["system"];
+
   const messagesTruncated = messages.slice(-6);
-  const prompt = characterPrompts["time1"]["Alyosha"]["system"];
-  const xmlMessages = await formatMessages(messages);
+  const xmlMessages = await formatMessages(messagesTruncated);
 
   // retrieve context documents based on prompt and previous messages
   const promptAndMessages =
