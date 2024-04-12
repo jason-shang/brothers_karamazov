@@ -1,8 +1,8 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function getVoyageAIKey() {
@@ -24,4 +24,10 @@ export function getSupabaseKey() {
   const serviceKey = process.env.SUPABASE_SERVICE_KEY;
   if (!serviceKey) throw new Error(`Expected env var SUPABASE_PRIVATE_KEY`);
   return serviceKey;
+}
+
+export function getCohereTrialKey() {
+  const key = process.env.COHERE_TRIAL_KEY;
+  if (!key) throw new Error(`Expected env var COHERE_TRIAL_KEY`);
+  return key;
 }

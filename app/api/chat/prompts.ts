@@ -4,10 +4,16 @@ import {
   SupabaseFilterRPCCall,
 } from "@langchain/community/vectorstores/supabase";
 import { VoyageEmbeddings } from "@langchain/community/embeddings/voyage";
-import { getSupabaseURL, getSupabaseKey, getVoyageAIKey } from "@/lib/utils";
+import {
+  getSupabaseURL,
+  getSupabaseKey,
+  getVoyageAIKey,
+  getCohereTrialKey,
+} from "@/lib/utils";
 import characterPrompts from "@/public/characterPrompts.json";
 import generalPrompts from "@/public/generalPrompts.json";
 import { Message } from "@/app/api/chat/route";
+import { CohereClient } from "cohere-ai";
 
 export interface CharacterPromptData {
   [time: string]: {
@@ -24,9 +30,34 @@ export interface GeneralPromptData {
   role_play_devil: string;
 }
 
+interface Document {
+  text: string;
+}
+
+interface Result {
+  document?: Document;
+  index: number;
+  relevanceScore: number;
+}
+
+interface RerankMeta {
+  apiVersion?: {
+    version: string;
+  };
+  billedUnits?: {
+    searchUnits?: number;
+  };
+}
+
+interface RerankedResults {
+  id?: string;
+  results: Result[];
+  meta?: RerankMeta;
+}
+
 // Perform similarity search in Supabase vector store and retrieve top 5 summary chunks & top 3 original text chunks
 export const retrieveContextDocuments = async (prompt: string) => {
-  const client = createClient(getSupabaseURL(), getSupabaseKey());
+  const client = createClient(getSupabaseURL(), getSupabaseKey()); // supabase client
 
   const embeddings = new VoyageEmbeddings({
     apiKey: getVoyageAIKey(),
@@ -52,20 +83,63 @@ export const retrieveContextDocuments = async (prompt: string) => {
 
   const summaryResults = await vectorStore.similaritySearchWithScore(
     prompt,
-    5,
+    20,
     summaryFilter
   );
 
   const originalTextResults = await vectorStore.similaritySearchWithScore(
     prompt,
-    3,
+    20,
     originalTextFilter
   );
 
-  const mergedResults = [...summaryResults, ...originalTextResults];
-  // transform mergedResults into list of just strings
-  const mergedStrings: string[] = mergedResults.map(([doc]) => doc.pageContent);
-  return mergedStrings;
+  const summaries = summaryResults.map(([doc]) => doc.pageContent);
+  const originalTexts = originalTextResults.map(([doc]) => doc.pageContent);
+
+  const rerankedSummaries = await rerankResults(prompt, summaries, 5);
+  const rerankedOriginalTexts = await rerankResults(prompt, originalTexts, 3);
+
+  let mergedResults = [...rerankedSummaries, ...rerankedOriginalTexts];
+  if (mergedResults.length <= 8) {
+    // if we don't have enough results (meaning rerank API rate limit is exceeded), just use similarity search results
+    // this is because we're using trial rerank API, not prod
+    mergedResults = [...summaries, ...originalTexts];
+  }
+  return mergedResults;
+};
+
+const rerankResults = async (
+  prompt: string,
+  results: string[],
+  topN: number
+) => {
+  try {
+    const cohere = new CohereClient({
+      token: getCohereTrialKey(),
+    });
+
+    const documents = results.map((item) => ({
+      text: item,
+    }));
+
+    const rerankedResults: RerankedResults = await cohere.rerank({
+      model: "rerank-english-v3.0",
+      documents: documents,
+      query: prompt,
+      topN: topN,
+      returnDocuments: true,
+    });
+
+    // transform reranked results back into a list of strings
+    const rerankedResultsStrings: string[] = rerankedResults.results
+      .filter((result) => result.document !== undefined)
+      .map((result) => result.document!.text);
+
+    return rerankedResultsStrings;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
 
 // embed XML tags into messages
