@@ -2,6 +2,7 @@ import * as React from "react";
 import BungalowIcon from "@mui/icons-material/Bungalow";
 import BalanceIcon from "@mui/icons-material/Balance";
 import BugReportIcon from "@mui/icons-material/BugReport";
+import ChurchIcon from "@mui/icons-material/Church";
 import {
   Timeline,
   TimelineItem,
@@ -51,8 +52,8 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
             Day One
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ py: 1 }}>
-            Fyodor&apos;s past, Grand Inquisitor, Katerina&apos;s sacrifice, Father
-            Zossima
+            Fyodor&apos;s past, Grand Inquisitor, Katerina&apos;s sacrifice,
+            Father Zossima
           </Typography>
         </TimelineContent>
       </TimelineItem>
@@ -112,7 +113,7 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
               }}
               variant={time === "day3" ? "outlined" : "filled"}
             >
-              <BalanceIcon />
+              <ChurchIcon />
             </TimelineDot>
           </IconButton>
           <TimelineConnector />
@@ -123,6 +124,41 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ py: 1 }}>
             Dmitry&apos;s trial, Ivan & his devil, Smerdyakov&apos;s suicide
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineConnector />
+          <IconButton
+            onClick={() => {
+              console.log("day4");
+              setTime("day4");
+            }}
+          >
+            <TimelineDot
+              sx={{
+                backgroundColor: time === "day4" ? "black" : "white",
+                color: time === "day4" ? "white" : "black",
+                borderColor: "black",
+                borderWidth: "3px",
+                "&.MuiTimelineDot-outlined": {
+                  borderWidth: "3px",
+                },
+              }}
+              variant={time === "day4" ? "outlined" : "filled"}
+            >
+              <BalanceIcon />
+            </TimelineDot>
+          </IconButton>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: "12px", px: 2 }}>
+          <Typography variant="h6" component="span">
+            Day Four
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ py: 1 }}>
+            The Fatal Day
           </Typography>
         </TimelineContent>
       </TimelineItem>
