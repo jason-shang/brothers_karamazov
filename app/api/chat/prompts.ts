@@ -18,6 +18,12 @@ export interface CharacterPromptData {
   };
 }
 
+export interface GeneralPromptData {
+  user: string;
+  role_play_grand_inquisitor: string;
+  role_play_devil: string;
+}
+
 // Perform similarity search in Supabase vector store and retrieve top 5 summary chunks & top 3 original text chunks
 export const retrieveContextDocuments = async (prompt: string) => {
   const client = createClient(getSupabaseURL(), getSupabaseKey());
@@ -94,8 +100,10 @@ export const structureSystemPrompt = async (
   time: string,
   character: string
 ) => {
-  const prompts = characterPrompts as CharacterPromptData;
-  const prompt = prompts[time][character]["system"];
+  const characterPromptsFormatted = characterPrompts as CharacterPromptData;
+  const generalPromptsFormatted = generalPrompts as GeneralPromptData;
+
+  const prompt = characterPromptsFormatted[time][character]["system"];
 
   const messagesTruncated = messages.slice(-6);
   const xmlMessages = await formatMessages(messagesTruncated);
@@ -115,10 +123,17 @@ export const structureSystemPrompt = async (
   const documentString: string =
     "<documents>\n" + taggedDocuments.join("\n") + "\n<documents>\n";
 
+  let generalPromptRole: string = "user";
+  if (character === "Ivan's Devil") {
+    generalPromptRole = "role_play_devil";
+  } else if (character === "Grand Inquisitor") {
+    generalPromptRole = "role_play_grand_inquisitor";
+  }
+
   const finalPrompt: string =
     promptAndMessages +
     "Here are some documents for you to reference for your task:\n" +
     documentString +
-    generalPrompts["user"];
+    generalPromptsFormatted[generalPromptRole as keyof GeneralPromptData];
   return finalPrompt;
 };

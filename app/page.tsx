@@ -13,7 +13,7 @@ export default function Home() {
       <div className="fixed left-0 top-0 bottom-0 w-1/4 overflow-y-auto p-4">
         <CustomTimeline time={time} setTime={setTime} />
       </div>
-      {time === "day1" ? (
+      {time === "day2" ? (
         <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
           <CharacterButton
             time={time}
@@ -27,6 +27,24 @@ export default function Home() {
           <CharacterButton
             time={time}
             character={"Smerdyakov"}
+            setCharacter={setCharacter}
+          />
+        </div>
+      ) : null}
+      {time === "day3" ? (
+        <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+          <CharacterButton
+            time={time}
+            character={"Ivan's Devil"}
+            setCharacter={setCharacter}
+          />
+        </div>
+      ) : null}
+      {time === "day4" ? (
+        <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+          <CharacterButton
+            time={time}
+            character={"Katerina"}
             setCharacter={setCharacter}
           />
         </div>
