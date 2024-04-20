@@ -22,12 +22,30 @@ export default function Home() {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div style={{ top: '18rem', right: '41rem', position: 'absolute' }}>
+          <div style={{ top: '30rem', right: '12rem', position: 'absolute' }}>
             <CharacterButton
               time={time}
               character={"Alyosha"}
               setCharacter={setCharacter}
               url="/static/avatars/alyosha.png"
+            />
+          </div>
+
+          <div style={{ top: '38rem', right: '50rem', position: 'absolute' }}>
+            <CharacterButton
+              time={time}
+              character={"Alyosha"}
+              setCharacter={setCharacter}
+              url="/static/avatars/katerina.png"
+            />
+          </div>
+
+          <div style={{ top: '18rem', right: '41rem', position: 'absolute' }}>
+            <CharacterButton
+              time={time}
+              character={"Alyosha"}
+              setCharacter={setCharacter}
+              url="/static/avatars/zosima.png"
             />
           </div>
         </div>
