@@ -29,6 +29,8 @@ export default function Home() {
         <div className="w-1/5 min-h-screen">
           <CustomTimeline time={time} setTime={setTime} />
         </div>
+
+        {time === "day1" ? (
         <div
           className="w-4/5 min-h-screen"
           style={{
@@ -67,9 +69,20 @@ export default function Home() {
             />
           </div>
         </div>
-        
+        ) : null}
 
         {time === "day2" ? (
+          <div
+          className="w-4/5 min-h-screen"
+          style={{
+            backgroundImage: `url('${backgroundImageUrl}')`,
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "no-repeat",
+            opacity: "1",  // Ensure this is always 1 when not in transition
+            transition: "opacity 1s ease-in-out",
+          }}
+          id="background-image"
+        >
           <div style={{ top: '18rem', right: '41rem', position: 'absolute' }}>
             <CharacterButton
               time={time}
@@ -77,6 +90,7 @@ export default function Home() {
               setCharacter={setCharacter}
               url="/static/avatars/alyosha.webp"
             />
+          </div>
           </div>
         ) : null}
         {time === "day3" ? (
