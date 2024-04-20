@@ -20,6 +20,8 @@ export default function Home() {
             backgroundImage: "url('/static/maps/day1.webp')",
             backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
+            opacity: time === "day1" ? 1 : 0,
+            transition: "opacity 1s ease-in-out",
           }}
         >
           <div style={{ top: '30rem', right: '12rem', position: 'absolute' }}>
