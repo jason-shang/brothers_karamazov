@@ -22,7 +22,7 @@ export default function CharacterButton({
 
   return (
     <>
-      <button className="relative overflow-hidden rounded-lg">
+      <button>
         <img
           src={url}
           alt={character}
@@ -30,7 +30,8 @@ export default function CharacterButton({
             setCharacter(character);
             setChatBoxOpen(true);
           }}
-          className="transition duration-300 ease-in-out transform hover:scale-110"
+          className="transition duration-300 ease-in-out transform hover:scale-125 lg:max-w-5xl"
+          style={{ maxWidth: "100px" }}
         />
       </button>
       {chatBoxOpen && (
