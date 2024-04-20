@@ -7,7 +7,22 @@ import CharacterButton from "../components/characterButton";
 export default function Home() {
   const [time, setTime] = useState("day1");
   const [character, setCharacter] = useState("");
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState(`/static/maps/${time}.webp`);
 
+  useEffect(() => {
+    const backgroundImage = document.getElementById("background-image");
+    if (backgroundImage) {
+      // First, fade out the current image
+      backgroundImage.style.opacity = "0";
+      setTimeout(() => {
+        // Update the image URL state after the fade out is complete
+        setBackgroundImageUrl(`/static/maps/${time}.webp`);
+        // Then fade in the new image
+        backgroundImage.style.opacity = "1";
+      }, 1000); // Match this delay with the CSS transition time
+    }
+  }, [time]);
+  
   return (
     <main>
       <div className="flex w-full min-h-screen">
@@ -15,14 +30,15 @@ export default function Home() {
           <CustomTimeline time={time} setTime={setTime} />
         </div>
         <div
-          className="w-3/4 min-h-screen"
+          className="w-4/5 min-h-screen"
           style={{
-            backgroundImage: "url('/static/maps/day1.webp')",
+            backgroundImage: `url('${backgroundImageUrl}')`,
             backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
-            opacity: time === "day1" ? 1 : 0,
+            opacity: "1",  // Ensure this is always 1 when not in transition
             transition: "opacity 1s ease-in-out",
           }}
+          id="background-image"
         >
           <div style={{ top: '30rem', right: '12rem', position: 'absolute' }}>
             <CharacterButton
@@ -51,9 +67,10 @@ export default function Home() {
             />
           </div>
         </div>
+        
 
-        {/* {time === "day2" ? (
-          <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+        {time === "day2" ? (
+          <div style={{ top: '18rem', right: '41rem', position: 'absolute' }}>
             <CharacterButton
               time={time}
               character={"Alyosha"}
@@ -91,7 +108,7 @@ export default function Home() {
               url="/static/avatars/alyosha.webp"
             />
           </div>
-        ) : null} */}
+        ) : null}
       </div>
     </main>
   );
