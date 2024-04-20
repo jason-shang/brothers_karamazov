@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import CustomTimeline from "@/components/customTimeline";
 import CharacterButton from "../components/characterButton";
-import Avatar from "@/components/avatar";
 
 export default function Home() {
   const [time, setTime] = useState("day1");
@@ -16,11 +15,11 @@ export default function Home() {
       </div>
       {time === "day2" ? (
         <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-          <Avatar name="Alyosha" imageUrl='/static/avatars/alyosha.webp' />
           <CharacterButton
             time={time}
             character={"Alyosha"}
             setCharacter={setCharacter}
+            url='/static/avatars/alyosha.webp'
           />
         </div>
       ) : null}
@@ -30,6 +29,7 @@ export default function Home() {
             time={time}
             character={"Smerdyakov"}
             setCharacter={setCharacter}
+            url='/static/avatars/alyosha.webp'
           />
         </div>
       ) : null}
@@ -39,6 +39,7 @@ export default function Home() {
             time={time}
             character={"Ivan's Devil"}
             setCharacter={setCharacter}
+            url='/static/avatars/alyosha.webp'
           />
         </div>
       ) : null}
@@ -48,6 +49,7 @@ export default function Home() {
             time={time}
             character={"Katerina"}
             setCharacter={setCharacter}
+            url='/static/avatars/alyosha.webp'
           />
         </div>
       ) : null}
