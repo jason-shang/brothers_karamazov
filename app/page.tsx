@@ -88,7 +88,7 @@ export default function Home() {
               time={time}
               character={"Alyosha"}
               setCharacter={setCharacter}
-              url="/static/avatars/alyosha.webp"
+              url="/static/avatars/alyosha.png"
             />
           </div>
           </div>
