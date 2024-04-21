@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { useState, useEffect } from "react";
 import CustomTimeline from "@/components/customTimeline";
@@ -7,48 +7,73 @@ import CharacterButton from "../components/characterButton";
 export default function Home() {
   const [time, setTime] = useState("day1");
   const [character, setCharacter] = useState("");
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
+  const [buttonsOpacity, setButtonsOpacity] = useState(1); // New state for buttons opacity
+
+  useEffect(() => {
+    const newImageUrl = `/static/maps/${time}.webp`;
+    const backgroundImage = document.getElementById("background-image");
+    if (backgroundImage) {
+      backgroundImage.style.opacity = "0"; // Start fading out
+      setButtonsOpacity(0); // Start fading out buttons
+      setTimeout(() => {
+        setBackgroundImageUrl(newImageUrl); // Update the URL after fade out
+        backgroundImage.style.opacity = "1"; // Start fading in
+        setButtonsOpacity(1); // Start fading in buttons
+      }, 1000); // Match this delay with the CSS transition time
+    }
+  }, [time]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="fixed left-0 top-0 bottom-0 w-1/4 overflow-y-auto p-4">
-        <CustomTimeline time={time} setTime={setTime} />
+    <main>
+      <div className="flex w-full min-h-screen">
+        <div className="fixed top-0 left-0 w-1/5 min-h-screen z-10">
+          <CustomTimeline time={time} setTime={setTime} />
+        </div>
+        <div
+          className="absolute w-full h-full"
+          style={{
+            backgroundImage: `url('${backgroundImageUrl}')`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            transition: "opacity 1s ease-in-out",
+            opacity: buttonsOpacity, // Apply dynamic opacity to background and buttons
+          }}
+          id="background-image"
+        >
+          {/* Render buttons based on time */}
+          {time === "day1" && (
+            <>
+              <div style={{ top: "30rem", right: "12rem", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+                <CharacterButton
+                  time={time}
+                  character={"Alyosha"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/alyosha.png"
+                />
+              </div>
+
+              <div style={{ top: "38rem", right: "50rem", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+                <CharacterButton
+                  time={time}
+                  character={"Alyosha"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/katerina.png"
+                />
+              </div>
+
+              <div style={{ top: "18rem", right: "41rem", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+                <CharacterButton
+                  time={time}
+                  character={"Alyosha"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/zosima.png"
+                />
+              </div>
+            </>
+          )}
+        </div>
       </div>
-      {time === "day2" ? (
-        <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-          <CharacterButton
-            time={time}
-            character={"Alyosha"}
-            setCharacter={setCharacter}
-          />
-        </div>
-      ) : null}
-      {time === "day3" ? (
-        <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-          <CharacterButton
-            time={time}
-            character={"Smerdyakov"}
-            setCharacter={setCharacter}
-          />
-        </div>
-      ) : null}
-      {time === "day3" ? (
-        <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-          <CharacterButton
-            time={time}
-            character={"Ivan's Devil"}
-            setCharacter={setCharacter}
-          />
-        </div>
-      ) : null}
-      {time === "day4" ? (
-        <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-          <CharacterButton
-            time={time}
-            character={"Katerina"}
-            setCharacter={setCharacter}
-          />
-        </div>
-      ) : null}
     </main>
   );
 }
