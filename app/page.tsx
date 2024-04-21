@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import CustomTimeline from "@/components/customTimeline";
@@ -44,7 +44,15 @@ export default function Home() {
           {/* Render buttons based on time */}
           {time === "day1" && (
             <>
-              <div style={{ top: "50%", right: "5%", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+              <div
+                style={{
+                  top: "50%",
+                  right: "5%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
                 <CharacterButton
                   time={time}
                   character={"Alyosha"}
@@ -53,7 +61,15 @@ export default function Home() {
                 />
               </div>
 
-              <div style={{ top: "50%", right: "12%", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+              <div
+                style={{
+                  top: "50%",
+                  right: "12%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
                 <CharacterButton
                   time={time}
                   character={"Ivan"}
@@ -62,7 +78,15 @@ export default function Home() {
                 />
               </div>
 
-              <div style={{ top: "75%", right: "50%", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+              <div
+                style={{
+                  top: "75%",
+                  right: "50%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
                 <CharacterButton
                   time={time}
                   character={"Fyodor"}
@@ -71,12 +95,75 @@ export default function Home() {
                 />
               </div>
 
-              <div style={{ top: "30%", right: "45%", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+              <div
+                style={{
+                  top: "30%",
+                  right: "45%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
                 <CharacterButton
                   time={time}
                   character={"Zosima"}
                   setCharacter={setCharacter}
                   url="/static/avatars/zosima.png"
+                />
+              </div>
+            </>
+          )}
+
+          {time === "day2" && (
+            <>
+              <div
+                style={{
+                  top: "50%",
+                  right: "75%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  time={time}
+                  character={"Alyosha"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/alyosha.png"
+                />
+              </div>
+
+              <div
+                style={{
+                  top: "45%",
+                  right: "12%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  time={time}
+                  character={"Dmitri"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/dmitri.png"
+                />
+              </div>
+
+              <div
+                style={{
+                  top: "50%",
+                  right: "19%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  time={time}
+                  character={"Grushenka"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/grushenka.png"
                 />
               </div>
             </>
