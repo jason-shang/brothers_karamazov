@@ -17,21 +17,32 @@ Then reference [http://localhost:3000](http://localhost:3000) for the result.
 ### 1. 
 
 Ivan -> Grand Inquisitor (role-play; user be Alyosha, try to convince Ivan)
+
 Fyodor -> about all his past wives (and negligence in raising his children), affairs, Grushenka, beef with Dmitry
-Katerina -> do you actually love Dmitry, or are you just betrothed to him for the honor
+
 Father Zossima -> role-play; user be Alyosha, talk to Zossima before his death; incorporate Alyosha's writings about Zossima's life story & teachings
 
 ### 2. 
 
 Alyosha -> wedding at Cana moment
+
 Dmitry -> wedding at Cana moment (Mokroe)
+
 Grushenka -> onion story (?)
 
 ### 3. 
 
 Dmitry -> trial (role-play; user be the judges)
+
 Ivan -> conversation with the devil (role-play; user be Ivan)
+
 Smerdyakov -> right before he commits suicide
+
+### 4. 
+
+Katerina -> at trial (after hysterics over Ivan)
+
+
 
 ## To-Do: 
 
