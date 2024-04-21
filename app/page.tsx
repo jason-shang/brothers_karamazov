@@ -10,7 +10,6 @@ export default function Home() {
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
 
   useEffect(() => {
-    // Use a temporary variable to hold the new URL
     const newImageUrl = `/static/maps/${time}.webp`;
     const backgroundImage = document.getElementById("background-image");
     if (backgroundImage) {
@@ -25,11 +24,11 @@ export default function Home() {
   return (
     <main>
       <div className="flex w-full min-h-screen">
-        <div className="w-1/5 min-h-screen">
+        <div className="fixed top-0 left-0 w-1/5 min-h-screen z-10">
           <CustomTimeline time={time} setTime={setTime} />
         </div>
         <div
-          className="w-4/5 min-h-screen"
+          className="absolute w-full h-full"
           style={{
             backgroundImage: `url('${backgroundImageUrl}')`,
             backgroundSize: "cover",
