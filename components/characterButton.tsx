@@ -31,7 +31,7 @@ export default function CharacterButton({
             setChatBoxOpen(true);
           }}
           className="transition duration-300 ease-in-out transform hover:scale-125 lg:max-w-5xl"
-          style={{ maxWidth: "100px" }}
+          style={{ maxWidth: "90px" }}
         />
       </button>
       {chatBoxOpen && (
