@@ -93,17 +93,31 @@ export const retrieveContextDocuments = async (prompt: string) => {
     originalTextFilter
   );
 
+  const numSummaries = 5;
+  const numOriginalTexts = 3;
+
   const summaries = summaryResults.map(([doc]) => doc.pageContent);
   const originalTexts = originalTextResults.map(([doc]) => doc.pageContent);
 
-  const rerankedSummaries = await rerankResults(prompt, summaries, 5);
-  const rerankedOriginalTexts = await rerankResults(prompt, originalTexts, 3);
+  const rerankedSummaries = await rerankResults(
+    prompt,
+    summaries,
+    numSummaries
+  );
+  const rerankedOriginalTexts = await rerankResults(
+    prompt,
+    originalTexts,
+    numOriginalTexts
+  );
 
   let mergedResults = [...rerankedSummaries, ...rerankedOriginalTexts];
-  if (mergedResults.length <= 8) {
+  if (mergedResults.length <= numSummaries + numOriginalTexts) {
     // if we don't have enough results (meaning rerank API rate limit is exceeded), just use similarity search results
     // this is because we're using trial rerank API, not prod
-    mergedResults = [...summaries, ...originalTexts];
+    mergedResults = [
+      ...summaries.slice(0, numSummaries),
+      ...originalTexts.slice(0, numOriginalTexts),
+    ];
   }
   return mergedResults;
 };
