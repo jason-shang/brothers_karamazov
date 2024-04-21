@@ -106,7 +106,7 @@ export default function Home() {
               >
                 <CharacterButton
                   time={time}
-                  character={"Zosima"}
+                  character={"Father Zossima"}
                   setCharacter={setCharacter}
                   url="/static/avatars/zosima.png"
                 />
@@ -119,7 +119,7 @@ export default function Home() {
               <div
                 style={{
                   top: "50%",
-                  right: "75%",
+                  right: "60%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
