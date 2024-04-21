@@ -44,7 +44,7 @@ export default function Home() {
           {/* Render buttons based on time */}
           {time === "day1" && (
             <>
-              <div style={{ top: "30rem", right: "12rem", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+              <div style={{ top: "50%", right: "5%", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
                 <CharacterButton
                   time={time}
                   character={"Alyosha"}
@@ -53,19 +53,28 @@ export default function Home() {
                 />
               </div>
 
-              <div style={{ top: "38rem", right: "50rem", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+              <div style={{ top: "50%", right: "12%", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
                 <CharacterButton
                   time={time}
-                  character={"Alyosha"}
+                  character={"Ivan"}
                   setCharacter={setCharacter}
-                  url="/static/avatars/katerina.png"
+                  url="/static/avatars/ivan.png"
                 />
               </div>
 
-              <div style={{ top: "18rem", right: "41rem", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+              <div style={{ top: "75%", right: "50%", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
                 <CharacterButton
                   time={time}
-                  character={"Alyosha"}
+                  character={"Fyodor"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/fyodor.png"
+                />
+              </div>
+
+              <div style={{ top: "30%", right: "45%", position: "absolute", transition: "opacity 1s ease-in-out", opacity: buttonsOpacity }}>
+                <CharacterButton
+                  time={time}
+                  character={"Zosima"}
                   setCharacter={setCharacter}
                   url="/static/avatars/zosima.png"
                 />
