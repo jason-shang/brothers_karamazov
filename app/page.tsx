@@ -168,6 +168,61 @@ export default function Home() {
               </div>
             </>
           )}
+
+          {time == "day3" && (
+            <>
+              <div
+                style={{
+                  top: "50%",
+                  right: "60%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  time={time}
+                  character={"Ivan"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/ivan.png"
+                />
+              </div>
+
+              <div
+                style={{
+                  top: "45%",
+                  right: "12%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  time={time}
+                  character={"Ivan's Devil"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/dmitri.png" // TODO: change
+                />
+              </div>
+
+              <div
+                style={{
+                  top: "50%",
+                  right: "19%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  time={time}
+                  character={"Smerdyakov"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/grushenka.png" // TODO: change
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </main>
