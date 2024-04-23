@@ -55,7 +55,7 @@ export default function Home() {
               >
                 <CharacterButton
                   time={time}
-                  character={"Alyosha"}
+                  character={"Alyosha-roleplay"}
                   setCharacter={setCharacter}
                   url="/static/avatars/alyosha.png"
                 />
@@ -72,7 +72,7 @@ export default function Home() {
               >
                 <CharacterButton
                   time={time}
-                  character={"Ivan"}
+                  character={"Ivan-roleplay"}
                   setCharacter={setCharacter}
                   url="/static/avatars/ivan.png"
                 />
@@ -200,7 +200,7 @@ export default function Home() {
               >
                 <CharacterButton
                   time={time}
-                  character={"Devil"}
+                  character={"Ivan's Devil"}
                   setCharacter={setCharacter}
                   url="/static/avatars/devil.png"
                 />

@@ -26,7 +26,8 @@ export interface CharacterPromptData {
 
 export interface GeneralPromptData {
   user: string;
-  role_play_grand_inquisitor: string;
+  role_play_grand_inquisitor_ivan: string;
+  role_play_grand_inquisitor_alyosha: string;
   role_play_devil: string;
 }
 
@@ -214,8 +215,10 @@ export const structureSystemPrompt = async (
   let generalPromptRole: string = "user";
   if (character === "Ivan's Devil") {
     generalPromptRole = "role_play_devil";
-  } else if (character === "Grand Inquisitor") {
-    generalPromptRole = "role_play_grand_inquisitor";
+  } else if (character === "Ivan-roleplay") {
+    generalPromptRole = "role_play_grand_inquisitor_alyosha";
+  } else if (character === "Alyosha-roleplay") {
+    generalPromptRole = "role_play_grand_inquisitor_ivan";
   }
 
   const finalPrompt: string =
