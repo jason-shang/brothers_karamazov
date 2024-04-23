@@ -174,7 +174,7 @@ export default function Home() {
               <div
                 style={{
                   top: "50%",
-                  right: "60%",
+                  right: "55%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
@@ -189,9 +189,10 @@ export default function Home() {
               </div>
 
               <div
+                className="z-40"
                 style={{
-                  top: "45%",
-                  right: "12%",
+                  top: "75%",
+                  right: "80%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
@@ -199,16 +200,16 @@ export default function Home() {
               >
                 <CharacterButton
                   time={time}
-                  character={"Ivan's Devil"}
+                  character={"Devil"}
                   setCharacter={setCharacter}
-                  url="/static/avatars/dmitri.png" // TODO: change
+                  url="/static/avatars/devil.png"
                 />
               </div>
 
               <div
                 style={{
-                  top: "50%",
-                  right: "19%",
+                  top: "60%",
+                  right: "15%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
@@ -218,7 +219,7 @@ export default function Home() {
                   time={time}
                   character={"Smerdyakov"}
                   setCharacter={setCharacter}
-                  url="/static/avatars/grushenka.png" // TODO: change
+                  url="/static/avatars/smerdyakov.png"
                 />
               </div>
             </>
