@@ -26,7 +26,8 @@ export interface CharacterPromptData {
 
 export interface GeneralPromptData {
   user: string;
-  role_play_grand_inquisitor: string;
+  role_play_grand_inquisitor_ivan: string;
+  role_play_grand_inquisitor_alyosha: string;
   role_play_devil: string;
 }
 
