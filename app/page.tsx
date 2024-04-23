@@ -243,6 +243,40 @@ export default function Home() {
                   url="/static/avatars/katerina.png"
                 />
               </div>
+
+              <div
+                style={{
+                  top: "55%",
+                  right: "43%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  scene={scene}
+                  character={"Dmitry"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/dmitri.png"
+                />
+              </div>
+
+              <div
+                style={{
+                  top: "55%",
+                  right: "53%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  scene={scene}
+                  character={"Fetyukovich"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/katerina.png"
+                />
+              </div>
             </>
           )}
         </div>

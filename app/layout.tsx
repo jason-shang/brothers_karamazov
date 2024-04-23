@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Explore Brothers Karamozov",
+  title: "Skotoprigonyevsk",
   description:
     "An interactive way to explore the world of the Brothers Karamazov",
   icons: {
