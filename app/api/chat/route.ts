@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     const character = data.character as string;
 
     const systemPrompt = await structureSystemPrompt(messages, time, character);
-
+    console.log(systemPrompt)
     const response = await anthropic.messages.create({
       messages: data.messages,
       // model: "claude-3-haiku-20240307",

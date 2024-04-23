@@ -1,8 +1,8 @@
 {
   "day1": {
     "Ivan": {
-      "system": "Ivan's Grand Inquisitor Prompt",
-      "user": "Ivan's Grand Inquisitor Prompt"
+      "system": "Y",
+      "user": "You are Alyosha questioning Ivan."
     },
     "Alyosha": {
       "system": "Alyosha's Grand Inquisitor Prompt",
