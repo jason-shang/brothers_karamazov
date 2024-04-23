@@ -32,6 +32,7 @@ const StyledTimelineContainer = styled(Box)({
   justifyContent: "flex-end",
   width: "23vw",
   height: "50vh",
+  opacity: "70%"
 });
 
 const TimelineTextContainer = styled(Box)({
