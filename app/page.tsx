@@ -223,6 +223,27 @@ export default function Home() {
               </div>
             </>
           )}
+
+          {time == "day4" && (
+            <>
+              <div
+                style={{
+                  top: "50%",
+                  right: "19%",
+                  position: "absolute",
+                  transition: "opacity 1s ease-in-out",
+                  opacity: buttonsOpacity,
+                }}
+              >
+                <CharacterButton
+                  time={time}
+                  character={"Katerina"}
+                  setCharacter={setCharacter}
+                  url="/static/avatars/katerina.png"
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </main>
