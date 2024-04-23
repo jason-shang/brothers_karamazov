@@ -46,8 +46,8 @@ export default function Home() {
             <>
               <div
                 style={{
-                  top: "50%",
-                  right: "5%",
+                  top: "70%",
+                  right: "45%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
@@ -63,8 +63,8 @@ export default function Home() {
 
               <div
                 style={{
-                  top: "50%",
-                  right: "12%",
+                  top: "70%",
+                  right: "50%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
@@ -80,8 +80,8 @@ export default function Home() {
 
               <div
                 style={{
-                  top: "75%",
-                  right: "50%",
+                  top: "45%",
+                  right: "65%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
