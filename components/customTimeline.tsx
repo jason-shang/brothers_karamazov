@@ -23,20 +23,20 @@ const StyledTimelineContainer = styled(Box)({
   marginLeft: "3rem",
   marginTop: "2rem",
   backgroundColor: "#f0e8d4",
-  padding: "15px",
+  padding: "10px",
   borderRadius: "10px",
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
   position: "relative",
   overflow: "hidden",
   display: "flex",
   justifyContent: "flex-end",
-  width: "23vw",
-  height: "50vh",
+  width: "20rem",
+  height: "40vh",
   opacity: "70%"
 });
 
 const TimelineTextContainer = styled(Box)({
-  width: "12rem", // Adjust the width as needed
+  width: "10rem", // Adjust the width as needed
 });
 
 const StyledTypography = styled(Typography)({
