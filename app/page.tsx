@@ -200,7 +200,7 @@ export default function Home() {
               >
                 <CharacterButton
                   time={time}
-                  character={"Devil"}
+                  character={"Ivan's Devil"}
                   setCharacter={setCharacter}
                   url="/static/avatars/devil.png"
                 />
