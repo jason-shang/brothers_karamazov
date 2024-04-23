@@ -16,7 +16,7 @@ import { Message } from "@/app/api/chat/route";
 import { CohereClient } from "cohere-ai";
 
 export interface CharacterPromptData {
-  [time: string]: {
+  [scene: string]: {
     [character: string]: {
       system: string;
       user: string;
@@ -186,13 +186,13 @@ const formatMessages = async (messages: Message[]) => {
 // structure long document prompt for long context windows as suggested by https://docs.anthropic.com/claude/docs/long-context-window-tips#structuring-long-documents
 export const structureSystemPrompt = async (
   messages: Message[],
-  time: string,
+  scene: string,
   character: string
 ) => {
   const characterPromptsFormatted = characterPrompts as CharacterPromptData;
   const generalPromptsFormatted = generalPrompts as GeneralPromptData;
 
-  const prompt = characterPromptsFormatted[time][character]["system"];
+  const prompt = characterPromptsFormatted[scene][character]["system"];
 
   const messagesTruncated = messages.slice(-6);
   const xmlMessages = await formatMessages(messagesTruncated);

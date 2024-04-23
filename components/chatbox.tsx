@@ -10,14 +10,14 @@ import characterPrompts from "@/public/characterPrompts.json";
 interface ChatBoxProps {
   open: boolean;
   onClose: () => void;
-  time: string;
+  scene: string;
   character: string;
 }
 
 export default function ChatBox({
   open,
   onClose,
-  time,
+  scene,
   character,
 }: ChatBoxProps) {
   const {
@@ -30,7 +30,7 @@ export default function ChatBox({
     error,
   } = useChat({
     body: {
-      time: time,
+      scene: scene,
       character: character,
     },
   }); // default routes to /api/chat
@@ -107,7 +107,7 @@ export default function ChatBox({
           {!error && messages.length === 0 && (
             <ConversationStarter
               message={{
-                content: prompts[time][character]["user"],
+                content: prompts[scene][character]["user"],
               }}
             />
           )}

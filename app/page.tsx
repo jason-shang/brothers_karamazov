@@ -5,13 +5,13 @@ import CustomTimeline from "@/components/customTimeline";
 import CharacterButton from "../components/characterButton";
 
 export default function Home() {
-  const [time, setTime] = useState("day1");
+  const [scene, setScene] = useState("scene1");
   const [character, setCharacter] = useState("");
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
   const [buttonsOpacity, setButtonsOpacity] = useState(1); // New state for buttons opacity
 
   useEffect(() => {
-    const newImageUrl = `/static/maps/${time}.webp`;
+    const newImageUrl = `/static/maps/${scene}.webp`;
     const backgroundImage = document.getElementById("background-image");
     if (backgroundImage) {
       backgroundImage.style.opacity = "0"; // Start fading out
@@ -22,13 +22,13 @@ export default function Home() {
         setButtonsOpacity(1); // Start fading in buttons
       }, 1000); // Match this delay with the CSS transition time
     }
-  }, [time]);
+  }, [scene]);
 
   return (
     <main>
       <div className="flex w-full min-h-screen">
         <div className="fixed top-0 left-0 w-1/5 min-h-screen z-10">
-          <CustomTimeline time={time} setTime={setTime} />
+          <CustomTimeline scene={scene} setScene={setScene} />
         </div>
         <div
           className="absolute w-full h-full"
@@ -42,7 +42,7 @@ export default function Home() {
           id="background-image"
         >
           {/* Render buttons based on time */}
-          {time === "day1" && (
+          {scene === "scene1" && (
             <>
               <div
                 style={{
@@ -54,7 +54,7 @@ export default function Home() {
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Alyosha-roleplay"}
                   setCharacter={setCharacter}
                   url="/static/avatars/alyosha.png"
@@ -71,7 +71,7 @@ export default function Home() {
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Ivan-roleplay"}
                   setCharacter={setCharacter}
                   url="/static/avatars/ivan.png"
@@ -88,7 +88,7 @@ export default function Home() {
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Fyodor"}
                   setCharacter={setCharacter}
                   url="/static/avatars/fyodor.png"
@@ -105,7 +105,7 @@ export default function Home() {
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Father Zossima"}
                   setCharacter={setCharacter}
                   url="/static/avatars/zosima.png"
@@ -114,7 +114,7 @@ export default function Home() {
             </>
           )}
 
-          {time === "day2" && (
+          {scene === "scene2" && (
             <>
               <div
                 style={{
@@ -126,7 +126,7 @@ export default function Home() {
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Alyosha"}
                   setCharacter={setCharacter}
                   url="/static/avatars/alyosha.png"
@@ -143,7 +143,7 @@ export default function Home() {
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Dmitry"}
                   setCharacter={setCharacter}
                   url="/static/avatars/dmitri.png"
@@ -160,7 +160,7 @@ export default function Home() {
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Grushenka"}
                   setCharacter={setCharacter}
                   url="/static/avatars/grushenka.png"
@@ -169,19 +169,19 @@ export default function Home() {
             </>
           )}
 
-          {time == "day3" && (
+          {scene == "scene3" && (
             <>
               <div
                 style={{
                   top: "50%",
-                  right: "55%",
+                  right: "57%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Ivan"}
                   setCharacter={setCharacter}
                   url="/static/avatars/ivan.png"
@@ -191,15 +191,15 @@ export default function Home() {
               <div
                 className="z-40"
                 style={{
-                  top: "75%",
-                  right: "80%",
+                  top: "65%",
+                  right: "30%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Ivan's Devil"}
                   setCharacter={setCharacter}
                   url="/static/avatars/devil.png"
@@ -208,15 +208,15 @@ export default function Home() {
 
               <div
                 style={{
-                  top: "60%",
-                  right: "15%",
+                  top: "40%",
+                  right: "70%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Smerdyakov"}
                   setCharacter={setCharacter}
                   url="/static/avatars/smerdyakov.png"
@@ -225,19 +225,19 @@ export default function Home() {
             </>
           )}
 
-          {time == "day4" && (
+          {scene == "scene4" && (
             <>
               <div
                 style={{
-                  top: "50%",
-                  right: "19%",
+                  top: "76%",
+                  right: "37%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
                   opacity: buttonsOpacity,
                 }}
               >
                 <CharacterButton
-                  time={time}
+                  scene={scene}
                   character={"Katerina"}
                   setCharacter={setCharacter}
                   url="/static/avatars/katerina.png"

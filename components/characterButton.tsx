@@ -6,14 +6,14 @@ import ChatBox from "@/components/chatbox";
 import { Button } from "@/components/ui/button";
 
 interface CharacterButtonProps {
-  time: string;
+  scene: string;
   character: string;
   setCharacter: React.Dispatch<React.SetStateAction<string>>;
   url: string;
 }
 
 export default function CharacterButton({
-  time,
+  scene,
   character,
   setCharacter,
   url,
@@ -38,7 +38,7 @@ export default function CharacterButton({
         <ChatBox
           open={chatBoxOpen}
           onClose={() => setChatBoxOpen(false)}
-          time={time}
+          scene={scene}
           character={character}
         />
       )}

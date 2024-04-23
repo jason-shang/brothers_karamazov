@@ -15,8 +15,8 @@ import { Box, IconButton, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
 interface CustomTimelineProps {
-  time: string;
-  setTime: React.Dispatch<React.SetStateAction<string>>;
+  scene: string;
+  setScene: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const StyledTimelineContainer = styled(Box)({
@@ -52,7 +52,7 @@ const StyledTimelineConnector = styled(TimelineConnector)({
   height: "100%",
 });
 
-export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
+export default function CustomTimeline({ scene, setScene }: CustomTimelineProps) {
   return (
     <StyledTimelineContainer>
       <Timeline position="left">
@@ -61,21 +61,21 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
             <StyledTimelineConnector />
             <IconButton
               onClick={() => {
-                console.log("day1");
-                setTime("day1");
+                console.log("scene1");
+                setScene("scene1");
               }}
             >
               <TimelineDot
                 sx={{
-                  backgroundColor: time === "day1" ? "saddlebrown" : "antiquewhite",
-                  color: time === "day1" ? "white" : "black",
+                  backgroundColor: scene === "scene1" ? "saddlebrown" : "antiquewhite",
+                  color: scene === "scene1" ? "white" : "black",
                   borderColor: "black",
                   borderWidth: "3px",
                   "&.MuiTimelineDot-outlined": {
                     borderWidth: "3px",
                   },
                 }}
-                variant={time === "day1" ? "outlined" : "filled"}
+                variant={scene === "scene1" ? "outlined" : "filled"}
               >
                 <BugReportIcon />
               </TimelineDot>
@@ -85,7 +85,7 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
           <TimelineContent sx={{ py: "12px", px: 2 }}>
             <TimelineTextContainer>
               <StyledTypography variant="h6">
-                Day One
+                Scene 1
               </StyledTypography>
               <StyledTypography variant="body2" color="text.secondary" sx={{ py: 1 }}>
                 Fyodor, Grand Inquisitor, Father Zossima
@@ -98,21 +98,21 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
             <StyledTimelineConnector />
             <IconButton
               onClick={() => {
-                console.log("day2");
-                setTime("day2");
+                console.log("scene2");
+                setScene("scene2");
               }}
             >
               <TimelineDot
                 sx={{
-                  backgroundColor: time === "day2" ? "saddlebrown" : "antiquewhite",
-                  color: time === "day2" ? "white" : "black",
+                  backgroundColor: scene === "scene2" ? "saddlebrown" : "antiquewhite",
+                  color: scene === "scene2" ? "white" : "black",
                   borderColor: "black",
                   borderWidth: "3px",
                   "&.MuiTimelineDot-outlined": {
                     borderWidth: "3px",
                   },
                 }}
-                variant={time === "day2" ? "outlined" : "filled"}
+                variant={scene === "scene2" ? "outlined" : "filled"}
               >
                 <BungalowIcon />
               </TimelineDot>
@@ -122,10 +122,10 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
           <TimelineContent sx={{ py: "12px", px: 2 }}>
             <TimelineTextContainer>
               <StyledTypography variant="h6">
-                Day Two
+                Scene 2
               </StyledTypography>
               <StyledTypography variant="body2" color="text.secondary" sx={{ py: 1 }}>
-                Wedding at Cana, the onion
+                Wedding at Cana, the Onion
               </StyledTypography>
             </TimelineTextContainer>
           </TimelineContent>
@@ -135,21 +135,21 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
             <StyledTimelineConnector />
             <IconButton
               onClick={() => {
-                console.log("day3");
-                setTime("day3");
+                console.log("scene3");
+                setScene("scene3");
               }}
             >
               <TimelineDot
                 sx={{
-                  backgroundColor: time === "day3" ? "saddlebrown" : "antiquewhite",
-                  color: time === "day3" ? "white" : "black",
+                  backgroundColor: scene === "scene3" ? "saddlebrown" : "antiquewhite",
+                  color: scene === "scene3" ? "white" : "black",
                   borderColor: "black",
                   borderWidth: "3px",
                   "&.MuiTimelineDot-outlined": {
                     borderWidth: "3px",
                   },
                 }}
-                variant={time === "day3" ? "outlined" : "filled"}
+                variant={scene === "scene3" ? "outlined" : "filled"}
               >
                 <ChurchIcon />
               </TimelineDot>
@@ -159,10 +159,10 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
           <TimelineContent sx={{ py: "12px", px: 2 }}>
             <TimelineTextContainer>
               <StyledTypography variant="h6">
-                Day Three
+                Scene 3
               </StyledTypography>
               <StyledTypography variant="body2" color="text.secondary" sx={{ py: 1 }}>
-                Dmitry&apos;s trial, Ivan&apos;s devil, Smerdyakov&apos;s suicide
+                Ivan and his devil, Smerdyakov&apos;s suicide
               </StyledTypography>
             </TimelineTextContainer>
           </TimelineContent>
@@ -172,21 +172,21 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
             <StyledTimelineConnector />
             <IconButton
               onClick={() => {
-                console.log("day4");
-                setTime("day4");
+                console.log("scene4");
+                setScene("scene4");
               }}
             >
               <TimelineDot
                 sx={{
-                  backgroundColor: time === "day4" ? "saddlebrown" : "antiquewhite",
-                  color: time === "day4" ? "white" : "black",
+                  backgroundColor: scene === "scene4" ? "saddlebrown" : "antiquewhite",
+                  color: scene === "scene4" ? "white" : "black",
                   borderColor: "black",
                   borderWidth: "3px",
                   "&.MuiTimelineDot-outlined": {
                     borderWidth: "3px",
                   },
                 }}
-                variant={time === "day4" ? "outlined" : "filled"}
+                variant={scene === "scene4" ? "outlined" : "filled"}
               >
                 <BalanceIcon />
               </TimelineDot>
@@ -196,10 +196,10 @@ export default function CustomTimeline({ time, setTime }: CustomTimelineProps) {
           <TimelineContent sx={{ py: "12px", px: 2 }}>
             <TimelineTextContainer>
               <StyledTypography variant="h6">
-                Day Four
+                Scene 4
               </StyledTypography>
               <StyledTypography variant="body2" color="text.secondary" sx={{ py: 1 }}>
-                The Fatal Day
+                The Courtroom
               </StyledTypography>
             </TimelineTextContainer>
           </TimelineContent>
