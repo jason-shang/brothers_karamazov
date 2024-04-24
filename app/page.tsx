@@ -274,7 +274,7 @@ export default function Home() {
                   scene={scene}
                   character={"Fetyukovich"}
                   setCharacter={setCharacter}
-                  url="/static/avatars/katerina.png"
+                  url="/static/avatars/fetyukovich.png"
                 />
               </div>
             </>
