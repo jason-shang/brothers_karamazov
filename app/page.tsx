@@ -279,6 +279,18 @@ export default function Home() {
               </div>
             </>
           )}
+          <script
+            data-name="BMC-Widget"
+            data-cfasync="false"
+            src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+            data-id="jasonshang"
+            data-description="Support me on Buy me a coffee!"
+            data-message="If you like the website & the conversations, consider small donations to help us cover the costs of running this service! Every contribution, no matter the size, makes a difference. Thank you for your support!"
+            data-color="#FF813F"
+            data-position="Right"
+            data-x_margin="18"
+            data-y_margin="18"
+          ></script>
         </div>
       </div>
     </main>

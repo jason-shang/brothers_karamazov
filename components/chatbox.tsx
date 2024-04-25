@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { XCircle, Trash } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CharacterPromptData } from "@/app/api/chat/prompts";
 import characterPrompts from "@/public/characterPrompts.json";
 
@@ -53,6 +53,11 @@ export default function ChatBox({
       inputRef.current?.focus();
     }
   }, [open]);
+
+  const [canSubmit, setCanSubmit] = useState(true);
+  useEffect(() => {
+    setCanSubmit(!isLoading);
+  }, [isLoading]);
 
   // boolean will only be true if the AI has not started streaming responses; used to show AI loading state (before streaming starts)
   const lastMessageIsUser = messages[messages.length - 1]?.role === "user";
@@ -131,7 +136,9 @@ export default function ChatBox({
             placeholder="Ask anything!"
             ref={inputRef}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={!canSubmit}>
+            Submit
+          </Button>
         </form>
       </div>
     </div>
