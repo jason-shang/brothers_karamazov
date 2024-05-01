@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import ChatBox from "@/components/chatbox";
-import { Button } from "@/components/ui/button";
 
 interface CharacterButtonProps {
   scene: string;

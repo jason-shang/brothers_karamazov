@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import CustomTimeline from "@/components/customTimeline";
 import CharacterButton from "../components/characterButton";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [scene, setScene] = useState("scene1");
@@ -229,7 +230,7 @@ export default function Home() {
             <>
               <div
                 style={{
-                  top: "76%",
+                  top: "70%",
                   right: "37%",
                   position: "absolute",
                   transition: "opacity 1s ease-in-out",
@@ -279,19 +280,29 @@ export default function Home() {
               </div>
             </>
           )}
-          {/* <script
-            async
-            data-name="BMC-Widget"
-            data-cfasync="false"
-            src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-            data-id="jasonshang"
-            data-description="Support me on Buy me a coffee!"
-            data-message="If you like the website & the conversations, consider small donations to help us cover the costs of running this service! Every contribution, no matter the size, makes a difference. Thank you for your support!"
-            data-color="#FF813F"
-            data-position="Right"
-            data-x_margin="18"
-            data-y_margin="18"
-          ></script> */}
+          <button
+            onClick={() =>
+              window.open("https://www.buymeacoffee.com/jasonshang", "_blank")
+            }
+            className="transition duration-500 ease-in-out transform hover:scale-110"
+            style={{
+              position: "fixed",
+              bottom: "5%",
+              right: "5%",
+              zIndex: 50,
+              opacity: buttonsOpacity,
+              transition: "opacity 1s ease-in-out, transform 0.5s ease-in-out",
+              backgroundColor: "#FFDD00",
+              color: "#000",
+              padding: "10px 20px",
+              borderRadius: "16px",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "Poppins, sans-serif",
+            }}
+          >
+            Enjoy the conversations? Consider supporting us in funding the project 🤗
+          </button>
         </div>
       </div>
     </main>
