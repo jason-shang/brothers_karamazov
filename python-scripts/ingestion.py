@@ -13,7 +13,7 @@ with open('config.json') as f:
 
 chunk_sizes = {
     "summary.txt": 500,
-    "the_brothers_karamazov.txt": 3000
+    "the_brothers_karamazov.txt": 2000
 }
 
 def ingestTextToSupabase(path: str, chunk_sizes: dict) -> None:
@@ -56,4 +56,4 @@ def ingestTextToSupabase(path: str, chunk_sizes: dict) -> None:
     )
 
 if __name__ == '__main__':
-    ingestTextToSupabase("../public", chunk_sizes)
+    ingestTextToSupabase("../public/texts", chunk_sizes)

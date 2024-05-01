@@ -71,7 +71,6 @@ export const retrieveContextDocuments = async (prompt: string) => {
     queryName: "match_documents",
   });
 
-  // filter to include 5 summaries and 3 original text paragraphs
   const summaryFilter: SupabaseFilterRPCCall = (rpc) =>
     rpc.filter("metadata->>source", "eq", "../public/summary.txt");
 
@@ -94,7 +93,7 @@ export const retrieveContextDocuments = async (prompt: string) => {
     originalTextFilter
   );
 
-  const numSummaries = 5;
+  const numSummaries = 4;
   const numOriginalTexts = 3;
 
   const summaries = summaryResults.map(([doc]) => doc.pageContent);
