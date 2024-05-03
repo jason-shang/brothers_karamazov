@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import CustomTimeline from "@/components/customTimeline";
 import CharacterButton from "../components/characterButton";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [scene, setScene] = useState("scene1");
@@ -289,7 +288,7 @@ export default function Home() {
               position: "fixed",
               bottom: "5%",
               right: "5%",
-              zIndex: 50,
+              zIndex: 10,
               opacity: buttonsOpacity,
               transition: "opacity 1s ease-in-out, transform 0.5s ease-in-out",
               backgroundColor: "#FFDD00",
