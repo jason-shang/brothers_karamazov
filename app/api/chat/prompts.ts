@@ -72,13 +72,13 @@ export const retrieveContextDocuments = async (prompt: string) => {
   });
 
   const summaryFilter: SupabaseFilterRPCCall = (rpc) =>
-    rpc.filter("metadata->>source", "eq", "../public/summary.txt");
+    rpc.filter("metadata->>source", "eq", "../public/texts/summary.txt");
 
   const originalTextFilter: SupabaseFilterRPCCall = (rpc) =>
     rpc.filter(
       "metadata->>source",
       "eq",
-      "../public/the_brothers_karamazov.txt"
+      "../public/texts/the_brothers_karamazov.txt"
     );
 
   const summaryResults = await vectorStore.similaritySearchWithScore(
