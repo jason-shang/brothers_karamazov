@@ -20,9 +20,9 @@ export async function POST(req: Request) {
     const systemPrompt = await structureSystemPrompt(messages, scene, character);
     const response = await anthropic.messages.create({
       messages: data.messages,
-      // model: "claude-3-haiku-20240307",
+      model: "claude-3-haiku-20240307",
       // model: "claude-3-sonnet-20240229",
-      model: "claude-3-opus-20240229",
+      // model: "claude-3-opus-20240229",
       stream: true,
       max_tokens: 400,
       system: systemPrompt,

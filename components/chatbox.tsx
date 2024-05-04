@@ -6,6 +6,7 @@ import { XCircle, Trash } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { CharacterPromptData } from "@/app/api/chat/prompts";
 import characterPrompts from "@/public/characterPrompts.json";
+import { UploadButton } from "@/components/uploadButton";
 
 interface ChatBoxProps {
   open: boolean;
@@ -140,6 +141,7 @@ export default function ChatBox({
             Submit
           </Button>
         </form>
+        <UploadButton messages={messages}/>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import {
   getSupabaseKey,
   getVoyageAIKey,
   getCohereTrialKey,
+  getBlobRWToken,
 } from "@/lib/utils";
 import characterPrompts from "@/public/characterPrompts.json";
 import generalPrompts from "@/public/generalPrompts.json";
@@ -111,7 +112,7 @@ export const retrieveContextDocuments = async (prompt: string) => {
   );
 
   let mergedResults = [...rerankedSummaries, ...rerankedOriginalTexts];
-  if (mergedResults.length <= numSummaries + numOriginalTexts) {
+  if (mergedResults.length < numSummaries + numOriginalTexts) {
     // if we don't have enough results (meaning rerank API rate limit is exceeded), just use similarity search results
     // this is because we're using trial rerank API, not prod
     mergedResults = [
@@ -151,6 +152,7 @@ const rerankResults = async (
 
     return rerankedResultsStrings;
   } catch (error) {
+    console.log("cohere shit didn't go through!");
     console.error(error);
     return [];
   }

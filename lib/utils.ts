@@ -31,3 +31,9 @@ export function getCohereTrialKey() {
   if (!key) throw new Error(`Expected env var COHERE_TRIAL_KEY`);
   return key;
 }
+
+export function getBlobRWToken() {
+  const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!blobToken) throw new Error(`Expected env var BLOB_READ_WRITE_TOKEN`);
+  return blobToken;
+}
