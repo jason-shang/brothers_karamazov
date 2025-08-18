@@ -26,7 +26,7 @@ This project is powered by a Retrieval-Augmented Generation (RAG) pipeline desig
 2.  **Reranking for Precision**: The [Cohere Rerank API](https://docs.cohere.com/docs/rerank-overview) is then used to sift through the initial results and distill them down to the 4 most relevant summaries and 3 most relevant passages from the original text.
 3.  **Building Context**: This refined context, along with custom system prompts, is then fed to `meta-llama/Llama-3.3-70B-Instruct-Turbo` hosted on Together AI's serverless platform. 
 
-Note: in my opinion the biggest innovations (literary, not technical) here are the system prompts (check them out at `/public/characterPrompts.json`). These are my personal interpretations of the characters at various points in the novel. So perhaps, the characters you end up talking to on the website is half Dostoevsky and half me...
+Note: in my opinion the biggest innovations (literary, not technical) here are the system prompts (check them out at `/public/characterPrompts.json`). These are my personal interpretations of the characters at various points in the novel. So perhaps, the characters you end up talking to on the website are half Dostoevsky and half me...
 
 ### Development Notes 📝
 
