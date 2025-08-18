@@ -12,7 +12,7 @@ export interface Message {
   content: string;
 }
 
-export function TogetherStream(
+function TogetherStream(
   response: AsyncIterable<ChatCompletionChunk>
 ): ReadableStream {
   const encoder = new TextEncoder();
