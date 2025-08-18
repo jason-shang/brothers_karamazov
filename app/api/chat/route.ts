@@ -1,5 +1,8 @@
-import { AnthropicStream, StreamingTextResponse } from "ai";
-import anthropic from "@/lib/anthropic";
+import { StreamingTextResponse } from "ai";
+import together from "@/lib/together_ai";
+import ChatCompletionMessageParam from "together-ai";
+import { ChatCompletionChunk } from "together-ai/resources/chat/completions";
+
 import { structureSystemPrompt } from "./prompts";
 
 export const runtime = "edge";
@@ -8,6 +11,31 @@ export interface Message {
   role: string;
   content: string;
 }
+
+function TogetherStream(
+  response: AsyncIterable<ChatCompletionChunk>
+): ReadableStream {
+  const encoder = new TextEncoder();
+
+  return new ReadableStream({
+    async start(controller) {
+      try {
+        for await (const chunk of response) {
+          const delta = chunk.choices[0]?.delta?.content;
+          if (delta) {
+            controller.enqueue(encoder.encode(delta));
+          }
+        }
+      } catch (err) {
+        console.error("Stream error:", err);
+        controller.error(err);
+      } finally {
+        controller.close();
+      }
+    },
+  });
+}
+
 
 export async function POST(req: Request) {
   try {
@@ -18,18 +46,22 @@ export async function POST(req: Request) {
     const character = data.character as string;
 
     const systemPrompt = await structureSystemPrompt(messages, scene, character);
-    const response = await anthropic.messages.create({
-      messages: data.messages,
-      // model: "claude-3-haiku-20240307",
-      // model: "claude-3-sonnet-20240229",
-      // model: "claude-3-opus-20240229",
-      model: "claude-3-5-sonnet-20240620",
-      stream: true,
+    const messagesWithSystemPrompt: ChatCompletionMessageParam[] = [
+      { "role": "system", "content": systemPrompt },
+      ...data.messages,
+    ];
+
+    const response = await together.chat.completions.create({
+      model: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+      messages: [
+        {"role": "system", "content": systemPrompt},
+        ...data.messages,
+      ],
       max_tokens: 400,
-      system: systemPrompt,
+      stream: true,
     });
 
-    const stream = AnthropicStream(response);
+    const stream = TogetherStream(response);
     return new StreamingTextResponse(stream);
   } catch (error) {
     console.error(error);
