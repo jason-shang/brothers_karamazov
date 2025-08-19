@@ -1,35 +1,38 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import {
-    getSupabaseURL,
-    getSupabaseKey
-} from "@/lib/utils";
+import { getSupabaseURL, getSupabaseKey } from "@/lib/utils";
 
 const supabase = createClient(getSupabaseURL(), getSupabaseKey());
 
 export async function GET(req: Request) {
-    const authHeader = req.headers.get("Authorization");
-    const expected = `Bearer ${process.env.CRON_SECRET}`;
+  const authHeader = req.headers.get("Authorization");
+  const expected = `Bearer ${process.env.CRON_SECRET}`;
 
-    if (authHeader !== expected) {
-        return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
-    }
+  if (authHeader !== expected) {
+    return NextResponse.json(
+      { ok: false, error: "Unauthorized" },
+      { status: 401 }
+    );
+  }
 
-    try {
-        // lightweight query to keep Supabase awake
-        const { data, error } = await supabase.from("documents").select("id").limit(1);
+  try {
+    // lightweight query to keep Supabase awake
+    const { data, error } = await supabase
+      .from("documents")
+      .select("id")
+      .limit(1);
 
-        if (error) throw error;
+    if (error) throw error;
 
-        return NextResponse.json({
-        ok: true,
-        pinged: !!data?.length,
-        });
-    } catch (err: any) {
-        console.error("Supabase cron ping failed:", err.message);
-        return NextResponse.json(
-        { ok: false, error: err.message },
-        { status: 500 }
-        );
-    }
+    return NextResponse.json({
+      ok: true,
+      pinged: !!data?.length,
+    });
+  } catch (err: any) {
+    console.error("Supabase cron ping failed:", err.message);
+    return NextResponse.json(
+      { ok: false, error: err.message },
+      { status: 500 }
+    );
+  }
 }

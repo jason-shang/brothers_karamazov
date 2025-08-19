@@ -36,7 +36,6 @@ function TogetherStream(
   });
 }
 
-
 export async function POST(req: Request) {
   try {
     const data = await req.json();
@@ -45,18 +44,19 @@ export async function POST(req: Request) {
     const scene = data.scene as string;
     const character = data.character as string;
 
-    const systemPrompt = await structureSystemPrompt(messages, scene, character);
+    const systemPrompt = await structureSystemPrompt(
+      messages,
+      scene,
+      character
+    );
     const messagesWithSystemPrompt: ChatCompletionMessageParam[] = [
-      { "role": "system", "content": systemPrompt },
+      { role: "system", content: systemPrompt },
       ...data.messages,
     ];
 
     const response = await together.chat.completions.create({
       model: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
-      messages: [
-        {"role": "system", "content": systemPrompt},
-        ...data.messages,
-      ],
+      messages: [{ role: "system", content: systemPrompt }, ...data.messages],
       max_tokens: 400,
       stream: true,
     });
