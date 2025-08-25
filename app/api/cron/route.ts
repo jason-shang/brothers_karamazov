@@ -16,8 +16,19 @@ export async function GET(req: Request) {
   }
 
   try {
-    // lightweight query to keep Supabase awake
+    // keep Supabase project alive
+    // combined read + write activity
     const { data, error } = await supabase
+      .from("keep_alive")
+      .upsert({ 
+        id: 1, 
+        last_ping: new Date().toISOString() 
+      }, { 
+        onConflict: 'id' 
+      });
+
+    // lightweight query
+    await supabase
       .from("documents")
       .select("id")
       .limit(1);
