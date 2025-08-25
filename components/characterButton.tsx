@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import ChatBox from "@/components/chatbox";
 
 interface CharacterButtonProps {
@@ -21,16 +22,18 @@ export default function CharacterButton({
 
   return (
     <>
-      <button>
-        <img
+      <button
+        onClick={() => {
+          setCharacter(character);
+          setChatBoxOpen(true);
+        }}
+      >
+        <Image
           src={url}
           alt={character}
-          onClick={() => {
-            setCharacter(character);
-            setChatBoxOpen(true);
-          }}
-          className="transition duration-300 ease-in-out transform hover:scale-125 lg:max-w-5xl"
-          style={{ maxWidth: "90px" }}
+          width={90}
+          height={90}
+          className="transition duration-300 ease-in-out transform hover:scale-125"
         />
       </button>
       {chatBoxOpen && (
