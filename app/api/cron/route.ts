@@ -20,12 +20,16 @@ export async function GET(req: Request) {
     // combined read + write activity
     const { data, error } = await supabase
       .from("keep_alive")
-      .upsert({ 
-        id: 1, 
-        last_ping: new Date().toISOString() 
-      }, { 
-        onConflict: 'id' 
-      });
+      .upsert(
+        {
+          id: 1,
+          last_ping: new Date().toISOString(),
+        },
+        {
+          onConflict: "id",
+        }
+      )
+      .select();
 
     // lightweight query
     await supabase
